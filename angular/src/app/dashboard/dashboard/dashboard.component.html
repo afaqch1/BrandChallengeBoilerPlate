@@ -1,0 +1,56 @@
+
+<div [@routerTransition] style="background-color : rgba(230, 56, 206, 0.836)">
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-6">
+            <h1>{{ "Dashboard" | localize }}</h1>
+          </div>
+          <div class="col-6 text-right">
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="content px-2">
+      <div class="container-fluid">
+          <div class="card-body table-responsive p-0">
+            <table class="table table-hover text-nowrap">
+              <thead class="bg-light">
+                <tr>
+                  <th>{{ "Name" | localize }}</th>
+                  <th>{{ "Points" | localize }}</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  *ngFor="
+                    let user of users
+                      | paginate
+                        : {
+                            id: 'server',
+                            itemsPerPage: pageSize,
+                            currentPage: pageNumber,
+                            totalItems: totalItems
+                          }
+                  "
+                >
+                  <td>{{ user.userName}}</td>
+                  <td>{{ 10}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+            <div class="row">
+              <!-- <div class="col-sm-4 col-12 text-sm-left text-center">
+                <button class="btn btn-secondary" (click)="refresh()">
+                  <i class="fas fa-redo-alt"></i>
+                </button>
+              </div> -->
+              
+            </div>
+          </div>
+     
+    </section>
+  </div>
+
+ 

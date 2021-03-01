@@ -1,0 +1,92 @@
+<form
+  class="form-horizontal"
+  autocomplete="off"
+  #editBrandForm="ngForm"
+  (ngSubmit)="save()"
+>
+  <abp-modal-header
+    [title]="'EditBrand' | localize"
+    (onCloseClick)="bsModalRef.hide()"
+  ></abp-modal-header>
+  <div class="modal-body">
+    <div class="form-group row required">
+      <label class="col-md-3 col-form-label" for="name">
+        {{ "BrandName" | localize }}
+      </label>
+      <div class="col-md-9">
+        <input
+          type="text"
+          class="form-control"
+          name="name"
+          id="name"
+          minlength="2"
+          maxlength="64"
+          required
+          [(ngModel)]="brand.name"
+          #tenancyNameModel="ngModel"
+          #tenancyNameEl
+        />
+        <!-- <abp-validation-summary
+          [control]="tenancyNameModel"
+          [controlEl]="tenancyNameEl"
+        ></abp-validation-summary> -->
+      </div>
+    </div>
+    <div class="form-group row required">
+      <label class="col-md-3 col-form-label" for="type">
+        {{ "Type" | localize }}
+      </label>
+      <div class="col-md-9">
+        <!-- <input
+          type="text"
+          class="form-control"
+          name="type"
+          id="type"
+          maxlength="128"
+          required
+          [(ngModel)]="brand.type"
+          #nameModel="ngModel"
+          #nameEl
+        /> -->
+        <select name="type" id="type"
+        required
+        [(ngModel)]="brand.type"
+        #nameModel="ngModel"
+        #nameEl>
+          <option value="FoodChain">FoodChain</option>
+          <option value="Beverages">Beverages</option>
+          <option value="Confectioners">Confectioners</option>
+          <option value="Undefined">Undefined</option>
+          </select>
+      </div>
+    </div>
+    <div class="form-group row required">
+      <label class="col-md-3 col-form-label" for="des">
+        {{ "Description" | localize }}
+      </label>
+      <div class="col-md-9">
+        <input
+          type="text"
+          class="form-control"
+          name="des"
+          id="des"
+          maxlength="128"
+          required
+          [(ngModel)]="brand.description"
+          #nameModel="ngModel"
+          #nameEl
+        />
+      </div>
+    </div>
+  </div>
+  <abp-modal-footer
+    [cancelDisabled]="saving"
+    [saveDisabled]="!editBrandForm.form.valid || saving"
+    (onCancelClick)="bsModalRef.hide()"
+  ></abp-modal-footer>
+</form>
+<style>
+  select {
+        width: 560px;
+    }
+</style>

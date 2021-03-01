@@ -1,0 +1,63 @@
+<form
+  class="form-horizontal"
+  autocomplete="off"
+  #editChallengeForm="ngForm"
+  (ngSubmit)="save()"
+>
+  <abp-modal-header
+    [title]="'EditChallenge' | localize"
+    (onCloseClick)="bsModalRef.hide()"
+  ></abp-modal-header>
+  <div class="modal-body">
+    <div class="form-group row required">
+      <label class="col-md-3 col-form-label" for="name">
+        {{ "ChallengeName" | localize }}
+      </label>
+      <div class="col-md-9">
+        <input
+          type="text"
+          class="form-control"
+          name="name"
+          id="name"
+          minlength="2"
+          maxlength="64"
+          required
+          [(ngModel)]="challenge.name"
+          #tenancyNameModel="ngModel"
+          #tenancyNameEl
+        />
+        <!-- <abp-validation-summary
+          [control]="tenancyNameModel"
+          [controlEl]="tenancyNameEl"
+        ></abp-validation-summary> -->
+      </div>
+    </div>
+    <div class="form-group row required">
+      <label class="col-md-3 col-form-label" for="type">
+        {{ "Type" | localize }}
+      </label>
+      <div class="col-md-9">
+        <select name="type" id="type"
+        required
+        [(ngModel)]="challenge.type"
+        #nameModel="ngModel"
+        #nameEl>
+          <option value="Posting a Picture">Posting a Picture</option>
+          <option value="Posting a Video">Posting a Video</option>
+          <option value="Posting a Text">Posting a Text</option>
+          <option value="Undefined">Undefined</option>
+          </select>
+      </div>
+    </div>
+  </div>
+  <abp-modal-footer
+    [cancelDisabled]="saving"
+    [saveDisabled]="!editChallengeForm.form.valid || saving"
+    (onCancelClick)="bsModalRef.hide()"
+  ></abp-modal-footer>
+</form>
+<style>
+  select {
+        width: 560px;
+    }
+</style>

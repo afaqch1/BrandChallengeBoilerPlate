@@ -1,0 +1,78 @@
+<form
+  class="form-horizontal"
+  autocomplete="off"
+  #createTrickForm="ngForm"
+  (ngSubmit)="save()"
+>
+  <abp-modal-header
+    [title]="'CreateNewTrick' | localize"
+    (onCloseClick)="bsModalRef.hide()"
+  ></abp-modal-header>
+  <div class="modal-body">
+    <div class="form-group row required">
+      <label class="col-md-3 col-form-label" for="challengeid" >
+        {{ "ChallengeId" | localize }}
+      </label>
+      <div class="col-md-9">
+        <input
+          type="text"
+          class="form-control"
+          name="challengeid"
+          id="challengeid"
+          minlength="2"
+          maxlength="64"
+          required
+          [(ngModel)]="trick.challengeId"
+          #tenancyNameModel="ngModel"
+          #tenancyNameEl
+        />
+      </div>
+    </div>
+    <div class="form-group row required">
+      <label class="col-md-3 col-form-label" for="trickname" >
+        {{ "TrickName" | localize }}
+      </label>
+      <div class="col-md-9">
+        <input
+          type="text"
+          class="form-control"
+          name="trickname"
+          id="trickname"
+          minlength="2"
+          maxlength="64"
+          required
+          [(ngModel)]="trick.name"
+          #tenancyNameModel="ngModel"
+          #tenancyNameEl
+        />
+      </div>
+    </div>
+    <div class="form-group row required">
+      <label class="col-md-3 col-form-label" for="type">
+        {{ "Type" | localize }}
+      </label>
+      <div class="col-md-9">
+        <select name="type" id="type"
+        required
+        [(ngModel)]="trick.type"
+        #nameModel="ngModel"
+        #nameEl>
+        <option value="Posting a Picture">Posting a Picture</option>
+        <option value="Posting a Video">Posting a Video</option>
+        <option value="Posting a Text">Posting a Text</option>
+        <option value="Undefined">Undefined</option>
+          </select>
+      </div>
+    </div>
+  </div>
+  <abp-modal-footer
+    [cancelDisabled]="saving"
+    [saveDisabled]="!createTrickForm.form.valid || saving"
+    (onCancelClick)="bsModalRef.hide()"
+  ></abp-modal-footer>
+</form>
+<style>
+  select {
+        width: 400px;
+    }
+</style>

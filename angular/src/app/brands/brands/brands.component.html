@@ -1,0 +1,94 @@
+
+<div [@routerTransition] style="background-color : rgb(233, 186, 34)">
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-6">
+            <h1>{{ "Brands" | localize }}</h1>
+          </div>
+          <div class="col-6 text-right">
+            <a href="javascript:;" class="btn bg-blue" (click)="createBrand()">
+              <i class="fa fa-plus-square"></i>
+              {{ "Create" | localize }}
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="content px-2">
+      <div class="container-fluid">
+          <div class="card-body table-responsive p-0">
+            <table class="table table-hover text-nowrap">
+              <thead class="bg-light">
+                <tr>
+                  <th>{{ "Name" | localize }}</th>
+                  <th>{{ "Type" | localize }}</th>
+                  <th>{{ "Description" | localize }}</th>
+                  <th style="width: 310px;">{{ "Actions" | localize }}</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  *ngFor="
+                    let brand of Brands
+                      | paginate
+                        : {
+                            id: 'server',
+                            itemsPerPage: pageSize,
+                            currentPage: pageNumber,
+                            totalItems: totalItems
+                          }
+                  "
+                >
+                  <td>{{ brand.name}}</td>
+                  <td>{{ brand.type}}</td>
+                  <td>{{ brand.description}}</td>
+                  <td>
+                    <!-- <button
+                      type="button"
+                      class="btn btn-sm bg-danger mx-2"
+                      (click)="createChallenge()"
+                    >
+                      <i class="fas fa-pencil-alt"></i>
+                      {{ "Create" | localize }}
+                    </button> -->
+                    <button
+                      type="button"
+                      class="btn btn-sm bg-success"
+                      (click)="editBrand(brand)"
+                    >
+                      <i class="fas fa-pencil-alt"></i>
+                      {{ "Edit" | localize }}
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-sm bg-danger mx-2"
+                      (click)="delete(brand)"
+                    >
+                      <i class="fas fa-trash"></i>
+                      {{ "Delete" | localize }}
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+            <div class="row" style="background-color : rgb(233, 186, 34)">
+              <!-- <div class="col-sm-4 col-12 text-sm-left text-center">
+                <button class="btn btn-secondary" (click)="refresh()">
+                  <i class="fas fa-redo-alt"></i>
+                </button>
+              </div> -->
+              <div class="col-sm-4 col-12 text-center">
+                <p class="mb-0 my-2">
+                  {{ "TotalRecordsCount" | localize: totalItems }}
+                </p>
+              </div>
+              
+            </div>
+          </div>
+     
+    </section>
+  </div>
+
+ 
